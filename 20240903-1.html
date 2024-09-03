@@ -1,0 +1,50 @@
+<!-- 시저 암호 (https://school.programmers.co.kr/learn/courses/30/lessons/12926?language=javascript) -->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+<script>
+	function solution(s, n) {
+
+		let Apb = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	    
+	    var answer = "";
+	    for (let i=0; i<s.length; i++) {
+
+	    	if (s[i] == " ")
+	    		answer += " ";
+	    	else {
+	    		let c = s[i].toUpperCase();
+		    	let changed = false;
+		    	if (c != s[i])
+		    		changed = true;
+		    	let w = 0;
+		    	for (let j=0; j<Apb.length; j++) {
+		    		if (c == Apb[j]) {
+		    			w = j;
+		    			break;
+		    		}
+		    	}
+		    	c = Apb[(w + n) % Apb.length];
+		    	if (changed == true)
+		    		c = c.toLowerCase();
+		    	answer += c;
+	    	}
+	    }
+
+	    return answer;
+
+	}
+
+	document.write(solution("AB", 1) + "<br>");
+	document.write(solution("z", 1) + "<br>");
+	document.write(solution("a B z", 4) + "<br>");
+
+
+</script>
+</body>
+</html>
