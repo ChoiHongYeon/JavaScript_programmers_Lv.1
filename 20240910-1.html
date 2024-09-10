@@ -1,0 +1,25 @@
+<!-- 문자열 내림차순으로 배치하기 (https://school.programmers.co.kr/learn/courses/30/lessons/12917?language=javascript) -->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+<script>
+	
+	function solution(s) {
+
+		let A = s.split('');
+		A.sort();
+		A.reverse();
+		return A.join('');
+
+	}
+
+	document.write(solution("Zbcdefg"));
+
+</script>
+</body>
+</html>
