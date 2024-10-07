@@ -1,0 +1,65 @@
+<!-- [1차] 비밀지도 (https://school.programmers.co.kr/learn/courses/30/lessons/17681?language=javascript) -->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+<script>
+	
+	function solution(n, arr1, arr2) {
+
+		let binary_arr1 = new Array(n);
+		let binary_arr2 = new Array(n);
+		for (let i=0; i<n; i++) {
+
+			binary_arr1[i] = arr1[i].toString(2);
+
+			let a = binary_arr1[i].length;
+			if (a < n) {
+				let b = "";
+				for (let j=0; j<n - a; j++) {
+					b = b.concat("0");
+				}
+				b = b.concat(binary_arr1[i]);
+				binary_arr1[i] = b;
+			}
+
+			binary_arr2[i] = arr2[i].toString(2);
+
+			a = binary_arr2[i].length;
+			if (a < n) {
+				let b = "";
+				for (let j=0; j<n - a; j++) {
+					b = b.concat("0");
+				}
+				b = b.concat(binary_arr2[i]);
+				binary_arr2[i] = b;
+			}
+
+		}
+
+	    var answer = new Array(n);
+	    for (let i=0; i<n; i++) {
+	    	answer[i] = "";
+	    	for (let j=0; j<n; j++) {
+	    		if (binary_arr1[i].charAt(j) == '0' && binary_arr2[i].charAt(j) == '0')
+	    			answer[i] = answer[i].concat(" ");
+	    		else
+	    			answer[i] = answer[i].concat("#");
+	    	}
+	    }
+
+	    return answer;
+
+	}
+
+	document.write(solution(5, [9, 20, 28, 18, 11], [30, 1, 21, 17, 28]));
+	document.write("<br>");
+	document.write(solution(6, [46, 33, 33 ,22, 31, 50], [27 ,56, 19, 14, 14, 10]));
+
+</script>
+</body>
+</html>
