@@ -1,0 +1,70 @@
+<!-- [1차] 다트 게임 (https://school.programmers.co.kr/learn/courses/30/lessons/17682?language=javascript) -->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+<script>
+	
+	function solution(dartResult) {
+
+	    var answer = 0;
+	    let score = ["", "", ""];
+	    let bonus = ["", "", ""];
+	    let option = ["", "", ""];
+	    let a = 0;
+	    let b = 0;
+
+	    for (let i=0; i<dartResult.length; i++) {
+	    	if (dartResult.charAt(i) == "S" || dartResult.charAt(i) == "D" || dartResult.charAt(i) == "T") {
+	    		score[a] = dartResult.slice(b, i);
+	    		bonus[a] = dartResult.charAt(i);
+	    		let c = 0;
+	    		if (i != dartResult.length - 1) {
+	    			if (dartResult.charAt(i + 1) == "*") {
+	    				option[a] = "*";
+	    				c++;
+	    			} else if (dartResult.charAt(i + 1) == "#") {
+	    				option[a] = "#";
+	    				c++;
+	    			}
+	    		}
+	    		a++;
+	    		b = i + 1 + c;
+	    	}
+	    }
+
+	    let total_score = [0, 0, 0];
+	    for (let i=0; i<3; i++) {
+	    	total_score[i] = parseInt(score[i]);
+	    	if (bonus[i] == "D")
+	    		total_score[i] **= 2;
+	    	if (bonus[i] == "T")
+	    		total_score[i] **= 3;
+	    	if (option[i] == "*") {
+	    		total_score[i] *= 2;
+	    		if (i != 0)
+	    			total_score[i - 1] *= 2;
+	    	}
+	    	if (option[i] == "#")
+	    		total_score[i] *= -1;
+	    }
+
+	    return total_score[0] + total_score[1] +total_score[2];
+
+	}
+
+	document.write(solution("1S2D*3T") + "<br>");
+	document.write(solution("1D2S#10S") + "<br>");
+	document.write(solution("1D2S0T") + "<br>");
+	document.write(solution("1S*2T*3S") + "<br>");
+	document.write(solution("1D#2S*3S") + "<br>");
+	document.write(solution("1T2D3D#") + "<br>");
+	document.write(solution("1D2S3T*") + "<br>");
+
+</script>
+</body>
+</html>
